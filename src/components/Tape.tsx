@@ -2,7 +2,7 @@ export default function Tape({ text, className = "" }: { text: string; className
   const items = Array.from({ length: 12 }, (_, i) => (
     <span key={i} className="flex shrink-0 items-center gap-6 px-4">
       {text}
-      <span aria-hidden>—</span>
+      <span aria-hidden>-</span>
     </span>
   ));
   return (

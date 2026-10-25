@@ -1,4 +1,4 @@
-# The Last Bath — Diorama Case File
+# The Last Bath - Diorama Case File
 
 SE3041 Digital Video Production and Delivery: project site for the post-crime-scene bathroom diorama.
 Built with Next.js (static, no backend) and hosted on Vercel.
@@ -21,11 +21,11 @@ All text and media paths are in `src/data/site.ts`. Nothing else needs editing.
 | Final 30s video | `public/media/final-30s.mp4` | `videos.final.src = "/media/final-30s.mp4"` |
 | Making-of video | `public/media/making-of.mp4` | `videos.making.src = "/media/making-of.mp4"` |
 | 360° diorama frames | `public/360/diorama/1.jpg … N.jpg` (in place: 64 frames, 960×536) | in `diorama360` set `frames`, `width` and `height` if they change |
-| Team names / IT numbers | — | edit `team` |
+| Team names / IT numbers | - | edit `team` |
 
 Notes:
 - 360° frames must be numbered from `1` with no gaps (`1.jpg, 2.jpg, …`) and all be the same size.
-  The current set is the team's 960×960 capture with the grey letterbox bars cropped off (rows 212–747).
+  The current set is the team's 960×960 capture with the grey letterbox bars cropped off (rows 212-747).
 - Export videos as H.264 MP4. Keep each one under ~50 MB (1080p, ~8 Mbps is plenty for 30 s).
 
 ## 360° viewer

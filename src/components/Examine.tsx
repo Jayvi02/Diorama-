@@ -18,7 +18,7 @@ export default function Examine() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_60%_45%,rgba(40,52,48,0.35),transparent_65%)]" />
       <div className="relative mx-auto grid max-w-7xl gap-12 px-5 sm:px-10 lg:grid-cols-12 lg:items-center">
         <div className="lg:col-span-4">
-          <Heading label="File 03 — 360° turntable" title="Examine the diorama" />
+          <Heading label="File 03 - 360° turntable" title="Examine the diorama" />
           <ol className="mt-10 space-y-6">
             {steps.map(([t, d], i) => (
               <li key={t} className="flex gap-4">

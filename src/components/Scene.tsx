@@ -42,7 +42,7 @@ export default function Scene() {
       <Cobweb corner="tr" seed={12} size={220} opacity={0.35} className="right-0 top-10" />
 
       <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
-        <Heading label="File 01 — Case summary" title="No one walked out" className="lg:col-span-7" />
+        <Heading label="File 01 - Case summary" title="No one walked out" className="lg:col-span-7" />
         <p className="text-lg leading-relaxed text-foreground/70 lg:col-span-5">{project.summary}</p>
       </div>
 
@@ -51,7 +51,7 @@ export default function Scene() {
         <span className="rough-line absolute inset-x-0 bottom-0" />
         {[
           ["03", "main miniatures"],
-          ["A4–A3", "diorama scale"],
+          ["A4-A3", "diorama scale"],
           ["360°", "turntable view"],
         ].map(([v, l], i) => (
           <div key={l} data-stat className="relative px-4 py-6 sm:px-8">
@@ -64,7 +64,7 @@ export default function Scene() {
 
       <div className="mt-16">
         <div className="mb-4 flex items-center justify-between font-type text-sm text-muted">
-          <span>Exhibit 01 — scene photograph</span>
+          <span>Exhibit 01 - scene photograph</span>
           <span className="hidden sm:inline">select a marker</span>
           <span className="sm:hidden">tap a marker</span>
         </div>

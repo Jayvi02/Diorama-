@@ -1,12 +1,12 @@
 // All page content lives here. When the final media arrives, drop the files
-// into /public and update the paths below — no other code needs to change.
+// into /public and update the paths below - no other code needs to change.
 
 export const project = {
   caseNo: "SE3041-26",
   title: "The Last Bath",
   tagline: "A miniature post-crime scene, rebuilt frame by frame.",
   summary:
-    "A hand-built diorama of an abandoned, survival-horror style bathroom moments after a crime. Chalk outlines, evidence markers, police tape and blood spatter — every piece made by hand at miniature scale, then filmed, composited and brought to life with VFX.",
+    "A hand-built diorama of an abandoned, survival-horror style bathroom moments after a crime. Chalk outlines, evidence markers, police tape and blood spatter - every piece made by hand at miniature scale, then filmed, composited and brought to life with VFX.",
   module: "SE3041 · Digital Video Production and Delivery",
   institution: "Faculty of Computing · SLIIT",
   year: "Year 3, Semester 2 · 2026",
@@ -37,7 +37,7 @@ export const videos: { final: VideoItem; making: VideoItem } = {
     label: "Exhibit A",
     title: "Final Film",
     description:
-      "The 30 second final cut — diorama, miniatures and live action combined with set extension, chroma keying and CGI.",
+      "The 30 second final cut - diorama, miniatures and live action combined with set extension, chroma keying and CGI.",
     src: "/media/final-30s.mp4",
     poster: "/images/cover.webp",
     duration: "0:29",
@@ -47,7 +47,7 @@ export const videos: { final: VideoItem; making: VideoItem } = {
     label: "Exhibit B",
     title: "Making Of",
     description:
-      "Behind the scenes — from the first sketch and foundation to painting, lighting the set and the green-screen shoot.",
+      "Behind the scenes - from the first sketch and foundation to painting, lighting the set and the green-screen shoot.",
     src: "",
     poster: "/images/scene-01.jpg",
   },
@@ -91,14 +91,14 @@ export const evidence: EvidenceObject[] = [
   {
     marker: 3,
     name: "The Sink",
-    description: "The blood-streaked sink and pedestal at the heart of the scene — the first thing investigators saw.",
+    description: "The blood-streaked sink and pedestal at the heart of the scene - the first thing investigators saw.",
     details: ["Foam board", "Blood spatter", "Distressed paint"],
     spot: { x: 87, y: 38 },
   },
 ];
 
 export const process = [
-  { step: "01", title: "Concept", text: "A daily-life space turned crime scene — an old, survival-horror style bathroom." },
+  { step: "01", title: "Concept", text: "A daily-life space turned crime scene - an old, survival-horror style bathroom." },
   { step: "02", title: "Sketch & Scale", text: "Layout planned on paper between A4 and A3 before a single cut was made." },
   { step: "03", title: "Foundation", text: "Base, walls and a hand-cut tiled floor built to match the sketch." },
   { step: "04", title: "Miniatures", text: "Three main objects plus markers, police tape, chalk outline and blood spatter." },

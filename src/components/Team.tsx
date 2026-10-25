@@ -40,7 +40,7 @@ export default function Team() {
   return (
     <section id="team" ref={root} className="relative mx-auto max-w-7xl px-5 py-28 sm:px-10">
       <Cobweb corner="tr" seed={71} size={260} opacity={0.4} className="right-0 top-0" />
-      <Heading label="File 06 — Personnel" title="Investigators on file" className="mb-16" />
+      <Heading label="File 06 - Personnel" title="Investigators on file" className="mb-16" />
 
       <div data-files className="grid gap-10 md:grid-cols-3 md:gap-8">
         {team.map((m, i) => (
@@ -68,7 +68,7 @@ export default function Team() {
               <div>
                 <dt className="text-xs text-ink/60">Assigned case</dt>
                 <dd className="text-base">
-                  {project.caseNo} — {project.title}
+                  {project.caseNo} - {project.title}
                 </dd>
               </div>
             </dl>

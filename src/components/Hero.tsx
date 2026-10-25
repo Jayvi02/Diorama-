@@ -81,7 +81,7 @@ export default function Hero() {
         <img
           data-img
           src={coverImage}
-          alt="The finished diorama: a derelict bathroom sealed with police tape, evidence markers 1–3 and a chalk outline on the tiles"
+          alt="The finished diorama: a derelict bathroom sealed with police tape, evidence markers 1-3 and a chalk outline on the tiles"
           fetchPriority="high"
           className="graded absolute inset-0 h-full w-full scale-110 object-cover"
         />

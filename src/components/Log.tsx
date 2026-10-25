@@ -44,7 +44,7 @@ export default function Log() {
       <Cobweb corner="tl" seed={63} size={230} opacity={0.4} className="left-0 top-0" />
       <div className="flex h-full flex-col justify-center py-28 lg:py-0">
         <div className="mx-auto mb-12 w-full max-w-7xl px-5 sm:px-10">
-          <Heading label="File 05 — Investigation log" title="From sketch to screen" />
+          <Heading label="File 05 - Investigation log" title="From sketch to screen" />
         </div>
 
         <div

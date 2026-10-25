@@ -19,7 +19,7 @@ const typewriter = Special_Elite({
 });
 
 export const metadata: Metadata = {
-  title: `${project.title} — Diorama Case File`,
+  title: `${project.title} - Diorama Case File`,
   description: project.tagline,
   openGraph: {
     title: project.title,

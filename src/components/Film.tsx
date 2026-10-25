@@ -31,7 +31,7 @@ export function Film() {
     <section id="film" ref={root} className="relative py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-10">
         <div className="mb-12 grid gap-8 lg:grid-cols-12 lg:items-end">
-          <Heading label={`File 02 — ${videos.final.label}`} title={videos.final.title} className="lg:col-span-7" />
+          <Heading label={`File 02 - ${videos.final.label}`} title={videos.final.title} className="lg:col-span-7" />
           <p className="text-lg leading-relaxed text-foreground/70 lg:col-span-5">{videos.final.description}</p>
         </div>
         <div className="relative">
@@ -52,7 +52,7 @@ export function MakingOf() {
     <section id="making" className="relative py-28">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-10 lg:grid-cols-12">
         <div className="lg:col-span-4">
-          <Heading label={`File 04 — ${videos.making.label}`} title={videos.making.title} />
+          <Heading label={`File 04 - ${videos.making.label}`} title={videos.making.title} />
           <p className="mt-8 text-lg leading-relaxed text-foreground/70">{videos.making.description}</p>
         </div>
         <div className="relative lg:col-span-8">

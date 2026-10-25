@@ -31,7 +31,7 @@ export default function Footer() {
       <HangingSpider className="left-[38%] top-0 [--thread:120px]" />
 
       <div className="relative mx-auto max-w-7xl px-5 text-center sm:px-10">
-        <p className="font-type text-sm text-muted">— end of file —</p>
+        <p className="font-type text-sm text-muted">- end of file -</p>
         <div data-end className="mt-6">
           <p className="font-type text-[clamp(2.6rem,10vw,8rem)] leading-none">
             <TypeTitle text={project.title} />
