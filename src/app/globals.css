@@ -357,7 +357,6 @@ body::before {
 .viewer360-host {
   width: 100% !important;
   height: auto !important;
-  aspect-ratio: 1 / 1;
 }
 
 .viewer360-host canvas {

@@ -54,14 +54,14 @@ export const videos: { final: VideoItem; making: VideoItem } = {
 };
 
 // The single 360° turntable capture of the whole diorama.
-// TODO: replace with the real frames, e.g. imageDir "/360/diorama", 36 frames, "jpg", and remove placeholder.
 export const diorama360 = {
   // Folder under /public holding frames named 1.<ext>, 2.<ext>, ... <frames>.<ext>
-  imageDir: "/360/demo",
-  imageExt: "png" as "jpg" | "png" | "webp",
+  imageDir: "/360/diorama",
+  imageExt: "jpg" as "jpg" | "png" | "webp",
   frames: 64,
-  // Shows a "sample frames" note until the real capture replaces the lecture demo set.
-  placeholder: true,
+  // frame size: the teammate's 960×960 frames with the grey letterbox bars cropped off
+  width: 960,
+  height: 536,
 };
 
 export type EvidenceObject = {

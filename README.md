@@ -20,14 +20,13 @@ All text and media paths are in `src/data/site.ts`. Nothing else needs editing.
 | --- | --- | --- |
 | Final 30s video | `public/media/final-30s.mp4` | `videos.final.src = "/media/final-30s.mp4"` |
 | Making-of video | `public/media/making-of.mp4` | `videos.making.src = "/media/making-of.mp4"` |
-| 360° diorama frames | `public/360/diorama/1.jpg … N.jpg` | in `diorama360` set `imageDir`, `imageExt`, `frames`, and remove `placeholder` |
+| 360° diorama frames | `public/360/diorama/1.jpg … N.jpg` (in place: 64 frames, 960×536) | in `diorama360` set `frames`, `width` and `height` if they change |
 | Team names / IT numbers | — | edit `team` |
 
 Notes:
-- 360° frames must be numbered from `1` with no gaps (`1.jpg, 2.jpg, …`), all the same size, ideally square.
-  Around 1080×1080 JPG keeps them sharp and light. Export as JPG rather than PNG to keep the site fast.
+- 360° frames must be numbered from `1` with no gaps (`1.jpg, 2.jpg, …`) and all be the same size.
+  The current set is the team's 960×960 capture with the grey letterbox bars cropped off (rows 212–747).
 - Export videos as H.264 MP4. Keep each one under ~50 MB (1080p, ~8 Mbps is plenty for 30 s).
-- `public/360/demo` holds the lecture's sample mouse frames used as placeholders. Delete it once the real frames are in.
 
 ## 360° viewer
 

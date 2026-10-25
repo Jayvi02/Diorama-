@@ -33,11 +33,19 @@ export default function Examine() {
         </div>
 
         <div className="relative lg:col-span-8">
-          <div className="relative mx-auto max-w-[720px] bg-black">
-            <Viewer360 id="diorama" imageDir={diorama360.imageDir} imageExt={diorama360.imageExt} frames={diorama360.frames} />
+          <div className="relative bg-black">
+            <Viewer360
+              id="diorama"
+              imageDir={diorama360.imageDir}
+              imageExt={diorama360.imageExt}
+              frames={diorama360.frames}
+              width={diorama360.width}
+              height={diorama360.height}
+            />
             <div className="rough-frame pointer-events-none absolute -inset-2" />
             <div className="rough-frame pointer-events-none absolute -inset-4 opacity-40" />
-            <Cobweb corner="tl" seed={21} size={170} opacity={0.6} className="-left-4 -top-4" />
+            <Cobweb corner="tl" seed={21} size={170} opacity={0.6} className="-left-4 -top-4 hidden sm:block" />
+            <Cobweb corner="tl" seed={21} size={90} opacity={0.55} className="-left-3 -top-3 sm:hidden" />
             <Cobweb corner="br" seed={34} size={130} opacity={0.45} className="-bottom-4 -right-4" />
           </div>
         </div>
