@@ -38,9 +38,9 @@ export const videos: { final: VideoItem; making: VideoItem } = {
     title: "Final Film",
     description:
       "The 30 second final cut — diorama, miniatures and live action combined with set extension, chroma keying and CGI.",
-    src: "",
+    src: "/media/final-30s.mp4",
     poster: "/images/cover.webp",
-    duration: "0:30",
+    duration: "0:29",
   },
   making: {
     id: "making",
