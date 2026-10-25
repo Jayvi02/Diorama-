@@ -1,6 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, Inter, Special_Elite } from "next/font/google";
-import { project } from "@/data/site";
+import Cursor from "@/components/Cursor";
+import Loader from "@/components/Loader";
+import SmoothScroll from "@/components/SmoothScroll";
+import { coverImage, project } from "@/data/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -23,10 +26,15 @@ const typewriter = Special_Elite({
 export const metadata: Metadata = {
   title: `${project.title} — Diorama Case File`,
   description: project.tagline,
+  openGraph: {
+    title: project.title,
+    description: project.tagline,
+    images: [coverImage],
+  },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#07090d",
+  themeColor: "#050608",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -35,7 +43,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${inter.variable} ${bebas.variable} ${typewriter.variable} antialiased`}
     >
-      <body className="grain min-h-screen font-sans">{children}</body>
+      <body className="grain min-h-screen font-sans">
+        {/* SmoothScroll must come before Loader so the loader can pause scrolling */}
+        <SmoothScroll />
+        <Loader />
+        <Cursor />
+        {children}
+      </body>
     </html>
   );
 }

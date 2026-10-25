@@ -12,13 +12,12 @@ export const project = {
   year: "Year 3, Semester 2 · 2026",
 };
 
-export type Member = { name: string; itNumber: string; role: string };
+export type Member = { name: string; itNumber: string };
 
-// TODO: fill in real names and IT numbers (required for submission).
 export const team: Member[] = [
-  { name: "Member Name 01", itNumber: "IT2XXXXXXX", role: "Web development · Diorama build" },
-  { name: "Member Name 02", itNumber: "IT2XXXXXXX", role: "Video editing · VFX" },
-  { name: "Member Name 03", itNumber: "IT2XXXXXXX", role: "Photography · 360° capture" },
+  { name: "Jayavi T P W N", itNumber: "IT23682382" },
+  { name: "Gunawardhana E W C I", itNumber: "IT23542174" },
+  { name: "R M V S Rathnayaka", itNumber: "IT23434950" },
 ];
 
 export type VideoItem = {
@@ -40,7 +39,7 @@ export const videos: { final: VideoItem; making: VideoItem } = {
     description:
       "The 30 second final cut — diorama, miniatures and live action combined with set extension, chroma keying and CGI.",
     src: "",
-    poster: "/images/scene-01.jpg",
+    poster: "/images/cover.webp",
     duration: "0:30",
   },
   making: {
@@ -59,6 +58,8 @@ export type EvidenceObject = {
   name: string;
   description: string;
   details: string[];
+  // Where the object sits in the cover image, as % of its width / height (for the scene hotspots).
+  spot: { x: number; y: number };
   // Folder under /public holding frames named 1.<ext>, 2.<ext>, ... <frames>.<ext>
   imageDir: string;
   imageExt: "jpg" | "png" | "webp";
@@ -74,6 +75,7 @@ export const evidence: EvidenceObject[] = [
     name: "The Bathtub",
     description: "Sculpted and textured by hand, weathered to look decades past its last clean.",
     details: ["Clay & plaster", "Hand painted", "Aged finish"],
+    spot: { x: 39, y: 36 },
     imageDir: "/360/demo",
     imageExt: "png",
     frames: 64,
@@ -82,8 +84,9 @@ export const evidence: EvidenceObject[] = [
   {
     marker: 2,
     name: "The Toilet",
-    description: "A cracked, stained porcelain fixture built at 1:12 scale beside the chalk outline.",
+    description: "A cracked, stained porcelain fixture built at 1:12 scale, metres from the chalk outline.",
     details: ["Clay & plaster", "Grime wash", "1:12 scale"],
+    spot: { x: 62, y: 37 },
     imageDir: "/360/demo",
     imageExt: "png",
     frames: 64,
@@ -91,9 +94,10 @@ export const evidence: EvidenceObject[] = [
   },
   {
     marker: 3,
-    name: "The Cabinet",
-    description: "The blood-streaked cabinet at the heart of the scene — the first thing investigators saw.",
+    name: "The Sink",
+    description: "The blood-streaked sink and pedestal at the heart of the scene — the first thing investigators saw.",
     details: ["Foam board", "Blood spatter", "Distressed paint"],
+    spot: { x: 87, y: 38 },
     imageDir: "/360/demo",
     imageExt: "png",
     frames: 64,
@@ -111,10 +115,6 @@ export const process = [
   { step: "07", title: "VFX & Edit", text: "Set extension, compositing, colour matching and CGI brought into one cut." },
 ];
 
-// Stills for the gallery. Add more paths under /public/images as they come in.
-export const gallery = [
-  { src: "/images/scene-01.jpg", alt: "The diorama: evidence markers 1–3, chalk outline and police tape across the tiled bathroom floor" },
-];
-
-// Full-screen image behind the title at the top of the page.
+// Full-screen image behind the title, also used for the interactive scene.
 export const coverImage = "/images/cover.webp";
+export const coverSize = { width: 1672, height: 941 };
