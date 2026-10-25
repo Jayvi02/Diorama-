@@ -1,4 +1,4 @@
-import Evidence from "@/components/Evidence";
+import Examine from "@/components/Examine";
 import { Film, MakingOf } from "@/components/Film";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
@@ -14,15 +14,12 @@ export default function Home() {
       <Nav />
       <main id="top" className="overflow-x-clip">
         <Hero />
-        <div className="relative z-10 -my-6 -rotate-2 sm:-my-8">
-          <Tape text="Crime scene — do not cross" />
+        <div className="relative z-10 -my-5 -rotate-2">
+          <Tape text="Crime scene do not cross" />
         </div>
         <Scene />
         <Film />
-        <div className="relative z-10 rotate-1">
-          <Tape text="Evidence — handle with care" reverse />
-        </div>
-        <Evidence />
+        <Examine />
         <MakingOf />
         <Log />
         <Team />

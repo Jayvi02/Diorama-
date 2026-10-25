@@ -21,17 +21,13 @@ export default function VideoPlayer({ video }: { video: VideoItem }) {
             // eslint-disable-next-line @next/next/no-img-element
             <img src={video.poster} alt="" className="absolute inset-0 h-full w-full object-cover opacity-20 grayscale" />
           )}
-          {/* TV static */}
-          <div className="grain-static absolute inset-0 opacity-30 mix-blend-screen" />
-          <div className="scanlines absolute inset-0 opacity-60" />
+          <div className="grain-static absolute inset-0 opacity-25 mix-blend-screen" />
+          <div className="vignette absolute inset-0" />
           <div className="absolute inset-0 grid place-items-center p-6 text-center">
             <div>
-              <p className="glitch font-display text-5xl tracking-[0.15em] sm:text-7xl" data-text="NO SIGNAL">
-                NO SIGNAL
-              </p>
-              <p className="mt-3 font-type text-[10px] uppercase tracking-[0.3em] text-muted sm:text-xs">
-                Tape awaiting upload from the editing bay
-              </p>
+              <p className="eroded font-display text-5xl font-black uppercase sm:text-7xl">No signal</p>
+              <div className="rough-line mx-auto mt-3 w-40" />
+              <p className="mt-3 font-type text-sm text-muted">tape awaiting upload from the editing bay</p>
             </div>
           </div>
         </>
@@ -51,28 +47,18 @@ export default function VideoPlayer({ video }: { video: VideoItem }) {
               type="button"
               onClick={play}
               aria-label={`Play ${video.title}`}
-              data-cursor="PLAY"
-              className="absolute inset-0 grid place-items-center bg-black/30 transition hover:bg-black/10"
+              className="absolute inset-0 grid place-items-center bg-black/40 transition duration-700 hover:bg-black/20"
             >
-              <span className="grid h-24 w-24 place-items-center rounded-full border border-white/30 bg-black/50 backdrop-blur transition duration-500 group-hover:scale-110 group-hover:border-blood-bright group-hover:bg-blood/60">
-                <svg viewBox="0 0 24 24" className="ml-1 h-9 w-9 fill-foreground">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </span>
+              <span className="brush-btn">▶ Play</span>
             </button>
           )}
         </>
       )}
 
-      {/* camcorder HUD */}
       {!started && (
-        <div className="pointer-events-none absolute inset-0 p-4 font-type text-[10px] uppercase tracking-[0.25em] text-foreground/70 sm:p-6 sm:text-xs">
-          <span className="absolute left-4 top-4 flex items-center gap-2 sm:left-6 sm:top-6">
-            <span className={`inline-block h-2 w-2 rounded-full bg-blood-bright ${pending ? "" : "blink"}`} />
-            {pending ? "STBY" : "PLAY"}
-          </span>
-          {video.duration && <span className="absolute right-4 top-4 sm:right-6 sm:top-6">{video.duration}</span>}
-          <span className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6">{video.label}</span>
+        <div className="pointer-events-none absolute inset-0 font-type text-xs text-foreground/70 sm:text-sm">
+          <span className="absolute left-4 top-3 sm:left-6 sm:top-5">{video.label}</span>
+          {video.duration && <span className="absolute right-4 top-3 sm:right-6 sm:top-5">{video.duration}</span>}
         </div>
       )}
     </div>

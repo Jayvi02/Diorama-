@@ -20,9 +20,8 @@ All text and media paths are in `src/data/site.ts`. Nothing else needs editing.
 | --- | --- | --- |
 | Final 30s video | `public/media/final-30s.mp4` | `videos.final.src = "/media/final-30s.mp4"` |
 | Making-of video | `public/media/making-of.mp4` | `videos.making.src = "/media/making-of.mp4"` |
-| 360° frames (×3) | `public/360/<object>/1.jpg … N.jpg` | for each `evidence` item set `imageDir`, `imageExt`, `frames`, and remove `placeholder` |
-| Extra stills | `public/images/…` | add to `gallery` |
-| Team names / IT numbers | — | edit `team` (required for submission) |
+| 360° diorama frames | `public/360/diorama/1.jpg … N.jpg` | in `diorama360` set `imageDir`, `imageExt`, `frames`, and remove `placeholder` |
+| Team names / IT numbers | — | edit `team` |
 
 Notes:
 - 360° frames must be numbered from `1` with no gaps (`1.jpg, 2.jpg, …`), all the same size, ideally square.
@@ -37,7 +36,7 @@ Notes:
 - supports touch (drag a finger to rotate)
 - resets the canvas blend mode after zooming, so later frames don't go blank
 
-`src/components/Viewer360.tsx` loads jQuery and the plugin and starts each viewer when it scrolls into view.
+`src/components/Viewer360.tsx` loads jQuery and the plugin and starts the viewer when it scrolls into view.
 
 ## Deploy to Vercel
 

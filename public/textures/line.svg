@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="6" viewBox="0 0 600 6" preserveAspectRatio="none">
+  <!-- Mask for hand-drawn broken lines -->
+  <filter id="g" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.025 0.8" numOctaves="2" seed="4"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  4.2 0 0 0 -1.25"/>
+  </filter>
+  <rect width="600" height="6" filter="url(#g)"/>
+</svg>

@@ -4,14 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { project } from "@/data/site";
 import { getLenis, gsap, markIntroDone, prefersReducedMotion } from "@/lib/motion";
 
-const lines = [
-  `> ACCESSING CASE FILE ${project.caseNo}`,
-  "> LOCATION: BATHROOM 1F — SCENE SEALED",
-  "> EVIDENCE ITEMS LOGGED: 03",
-  "> DECRYPTING SURVEILLANCE ARCHIVE",
-];
-
-// Terminal-style intro shown once per browser session. Click or press any key to skip.
+// Title-card intro shown once per browser session. Click or press any key to skip.
 export default function Loader() {
   const root = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(true);
@@ -38,34 +31,19 @@ export default function Loader() {
     }
 
     getLenis()?.stop();
-    const count = { v: 0 };
-    const counter = el.querySelector<HTMLElement>("[data-count]")!;
-    const bar = el.querySelector<HTMLElement>("[data-bar]")!;
-    const rows = el.querySelectorAll<HTMLElement>("[data-line]");
-
+    const q = gsap.utils.selector(el);
     const tl = gsap.timeline({ onComplete: finish });
-    tl.to(rows, { opacity: 1, duration: 0.05, stagger: 0.38 }, 0.15)
-      .to(
-        count,
-        {
-          v: 100,
-          duration: 1.9,
-          ease: "power2.inOut",
-          onUpdate: () => {
-            counter.textContent = String(Math.round(count.v)).padStart(3, "0");
-            bar.style.transform = `scaleX(${count.v / 100})`;
-          },
-        },
-        0.1,
-      )
-      // fluorescent tube kicking in
-      .to(el, { opacity: 0.2, duration: 0.04 }, 2.15)
-      .to(el, { opacity: 1, duration: 0.04 })
-      .to(el, { opacity: 0.4, duration: 0.05 })
-      .to(el, { opacity: 1, duration: 0.05 })
-      .to(el.querySelector("[data-top]"), { yPercent: -100, duration: 0.9, ease: "expo.inOut" }, 2.45)
-      .to(el.querySelector("[data-bottom]"), { yPercent: 100, duration: 0.9, ease: "expo.inOut" }, 2.45)
-      .to(el.querySelector("[data-content]"), { opacity: 0, duration: 0.25 }, 2.4);
+    tl.from(q("[data-logo]"), { opacity: 0, filter: "blur(14px)", scale: 1.06, duration: 1.6, ease: "power2.out" }, 0.2)
+      // bulb struggling to turn on
+      .to(q("[data-logo]"), { opacity: 0.2, duration: 0.05 }, 0.9)
+      .to(q("[data-logo]"), { opacity: 1, duration: 0.05 }, 0.97)
+      .to(q("[data-logo]"), { opacity: 0.4, duration: 0.05 }, 1.1)
+      .to(q("[data-logo]"), { opacity: 1, duration: 0.08 }, 1.18)
+      .from(q("[data-rule]"), { scaleX: 0, duration: 1, ease: "power3.inOut", stagger: 0.1 }, 0.8)
+      .from(q("[data-sub] span"), { opacity: 0, duration: 0.01, stagger: 0.09 }, 1.1)
+      .to(q("[data-progress]"), { scaleX: 1, duration: 2.2, ease: "power1.inOut" }, 0.3)
+      .from(q("[data-note]"), { opacity: 0, duration: 0.6 }, 1.4)
+      .to(el, { opacity: 0, duration: 0.9, ease: "power2.in" }, 2.8);
 
     const skip = () => tl.progress(1);
     window.addEventListener("keydown", skip, { once: true });
@@ -79,39 +57,34 @@ export default function Loader() {
   if (!visible) return null;
 
   return (
-    <div ref={root} className="fixed inset-0 z-[100] cursor-pointer select-none" aria-hidden>
-      <div data-top className="absolute inset-x-0 top-0 h-1/2 bg-[#030304]" />
-      <div data-bottom className="absolute inset-x-0 bottom-0 h-1/2 bg-[#030304]" />
-      <div data-content className="absolute inset-0 flex flex-col justify-between p-6 sm:p-10">
-        <div className="flex items-center justify-between font-type text-[10px] uppercase tracking-[0.3em] text-muted sm:text-xs">
-          <span>
-            <span className="blink mr-2 inline-block h-2 w-2 rounded-full bg-blood-bright align-middle" />
-            REC
-          </span>
-          <span>{project.institution}</span>
+    <div
+      ref={root}
+      className="fixed inset-0 z-[100] flex cursor-pointer select-none flex-col items-center justify-center bg-[#070707] px-6"
+      aria-hidden
+    >
+      <div className="vignette absolute inset-0" />
+      <div className="relative text-center">
+        <div data-logo>
+          <p className="eroded font-display text-[clamp(3.5rem,13vw,9rem)] font-black uppercase leading-[0.82]">
+            {project.title}
+          </p>
         </div>
-
-        <div className="mx-auto w-full max-w-xl font-type text-xs leading-relaxed text-foreground/80 sm:text-sm">
-          {lines.map((l) => (
-            <p key={l} data-line className="opacity-0">
-              {l}
-            </p>
-          ))}
-          <span className="blink text-tape">█</span>
+        <div className="mt-4 flex items-center justify-center gap-4">
+          <span data-rule className="rough-line w-10 origin-right sm:w-20" />
+          <p data-sub className="spaced font-type text-xl lowercase sm:text-3xl">
+            {"diorama".split("").map((c, i) => (
+              <span key={i}>{c}</span>
+            ))}
+          </p>
+          <span data-rule className="rough-line w-10 origin-left sm:w-20" />
         </div>
+      </div>
 
-        <div>
-          <div className="flex items-end justify-between">
-            <span className="font-type text-[10px] uppercase tracking-[0.3em] text-muted sm:text-xs">
-              Loading evidence
-            </span>
-            <span data-count className="font-display text-7xl leading-none text-foreground sm:text-9xl">
-              000
-            </span>
-          </div>
-          <div className="mt-4 h-px w-full bg-line">
-            <div data-bar className="h-full origin-left scale-x-0 bg-blood-bright" />
-          </div>
+      <div className="absolute inset-x-6 bottom-10 mx-auto max-w-md sm:bottom-16">
+        <p data-note className="mb-3 text-center font-type text-sm text-muted">Opening case file {project.caseNo}…</p>
+        <div className="relative h-px">
+          <div className="rough-line absolute inset-0 opacity-20" />
+          <div data-progress className="rough-line absolute inset-0 origin-left scale-x-0 opacity-90" />
         </div>
       </div>
     </div>

@@ -36,12 +36,6 @@ export const onIntroDone = (cb: () => void) => {
   return () => window.removeEventListener(INTRO_DONE, cb);
 };
 
-// Lets the scene hotspots tell the evidence inventory which item to open.
-export const SELECT_EVIDENCE = "evidence:select";
-export const selectEvidence = (marker: number) => {
-  window.dispatchEvent(new CustomEvent(SELECT_EVIDENCE, { detail: marker }));
-};
-
 export const scrollToId = (id: string) => {
   const el = document.getElementById(id);
   if (!el) return;

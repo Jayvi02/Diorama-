@@ -1,13 +1,16 @@
-export default function Tape({ text, reverse = false, className = "" }: { text: string; reverse?: boolean; className?: string }) {
+export default function Tape({ text, className = "" }: { text: string; className?: string }) {
   const items = Array.from({ length: 12 }, (_, i) => (
-    <span key={i} className="flex shrink-0 items-center gap-6 px-3">
+    <span key={i} className="flex shrink-0 items-center gap-6 px-4">
       {text}
-      <span aria-hidden>■</span>
+      <span aria-hidden>—</span>
     </span>
   ));
   return (
-    <div className={`tape overflow-hidden py-2 font-display text-lg tracking-[0.25em] sm:text-xl ${className}`} aria-hidden>
-      <div className={`tape-track ${reverse ? "reverse" : ""}`}>
+    <div
+      className={`tape overflow-hidden py-1.5 font-display text-lg font-extrabold uppercase tracking-[0.2em] sm:text-xl ${className}`}
+      aria-hidden
+    >
+      <div className="tape-track">
         {items}
         {items}
       </div>

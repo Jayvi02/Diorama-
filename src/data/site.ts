@@ -53,6 +53,17 @@ export const videos: { final: VideoItem; making: VideoItem } = {
   },
 };
 
+// The single 360° turntable capture of the whole diorama.
+// TODO: replace with the real frames, e.g. imageDir "/360/diorama", 36 frames, "jpg", and remove placeholder.
+export const diorama360 = {
+  // Folder under /public holding frames named 1.<ext>, 2.<ext>, ... <frames>.<ext>
+  imageDir: "/360/demo",
+  imageExt: "png" as "jpg" | "png" | "webp",
+  frames: 64,
+  // Shows a "sample frames" note until the real capture replaces the lecture demo set.
+  placeholder: true,
+};
+
 export type EvidenceObject = {
   marker: number;
   name: string;
@@ -60,15 +71,8 @@ export type EvidenceObject = {
   details: string[];
   // Where the object sits in the cover image, as % of its width / height (for the scene hotspots).
   spot: { x: number; y: number };
-  // Folder under /public holding frames named 1.<ext>, 2.<ext>, ... <frames>.<ext>
-  imageDir: string;
-  imageExt: "jpg" | "png" | "webp";
-  frames: number;
-  // Shows a "sample frames" badge until real 360° photos replace the lecture demo set.
-  placeholder?: boolean;
 };
 
-// TODO: replace imageDir/frames with the real 360° captures, e.g. "/360/bathtub", 36 frames, "jpg".
 export const evidence: EvidenceObject[] = [
   {
     marker: 1,
@@ -76,10 +80,6 @@ export const evidence: EvidenceObject[] = [
     description: "Sculpted and textured by hand, weathered to look decades past its last clean.",
     details: ["Clay & plaster", "Hand painted", "Aged finish"],
     spot: { x: 39, y: 36 },
-    imageDir: "/360/demo",
-    imageExt: "png",
-    frames: 64,
-    placeholder: true,
   },
   {
     marker: 2,
@@ -87,10 +87,6 @@ export const evidence: EvidenceObject[] = [
     description: "A cracked, stained porcelain fixture built at 1:12 scale, metres from the chalk outline.",
     details: ["Clay & plaster", "Grime wash", "1:12 scale"],
     spot: { x: 62, y: 37 },
-    imageDir: "/360/demo",
-    imageExt: "png",
-    frames: 64,
-    placeholder: true,
   },
   {
     marker: 3,
@@ -98,10 +94,6 @@ export const evidence: EvidenceObject[] = [
     description: "The blood-streaked sink and pedestal at the heart of the scene — the first thing investigators saw.",
     details: ["Foam board", "Blood spatter", "Distressed paint"],
     spot: { x: 87, y: 38 },
-    imageDir: "/360/demo",
-    imageExt: "png",
-    frames: 64,
-    placeholder: true,
   },
 ];
 

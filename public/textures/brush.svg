@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 80" preserveAspectRatio="none">
+  <!-- Dry grey brush stroke used behind buttons -->
+  <filter id="r" x="-5%" y="-25%" width="110%" height="150%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.035 0.22" numOctaves="3" seed="2" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="16" xChannelSelector="R" yChannelSelector="G" result="d"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.004 0.55" numOctaves="2" seed="5" result="s"/>
+    <feColorMatrix in="s" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  2.6 0 0 0 -1.6" result="streak"/>
+    <feComposite in="d" in2="streak" operator="out"/>
+  </filter>
+  <rect x="10" y="10" width="380" height="60" fill="#b4b3aa" filter="url(#r)"/>
+</svg>

@@ -66,10 +66,10 @@ export default function Viewer360({ id, imageDir, imageExt, frames }: Props) {
   }, [id, imageDir, imageExt, frames]);
 
   return (
-    <div className="relative aspect-square w-full overflow-hidden bg-[radial-gradient(circle_at_50%_40%,#1b2230_0%,#07090d_75%)]">
+    <div className="relative aspect-square w-full overflow-hidden bg-[radial-gradient(circle_at_50%_40%,#22231f_0%,#0a0a09_75%)]">
       <div ref={mountRef} className="absolute inset-0" />
       {state !== "ready" && (
-        <div className="pointer-events-none absolute inset-0 grid place-items-center font-type text-xs uppercase tracking-[0.2em] text-muted">
+        <div className="pointer-events-none absolute inset-0 grid place-items-center font-type text-sm text-muted">
           {state === "error" ? "Could not load 360° viewer" : "Loading frames…"}
         </div>
       )}

@@ -2,10 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import { coverImage, coverSize, evidence, project } from "@/data/site";
-import { gsap, prefersReducedMotion, scrollToId, selectEvidence } from "@/lib/motion";
-import Scramble from "./Scramble";
+import { gsap, prefersReducedMotion } from "@/lib/motion";
+import Cobweb from "./Cobweb";
+import Heading from "./Heading";
 
-// The diorama photo as an interactive crime scene: hotspots on the three main objects.
+// The diorama photo as a crime scene: markers on the three main objects open their notes.
 export default function Scene() {
   const root = useRef<HTMLElement>(null);
   const [active, setActive] = useState<number | null>(null);
@@ -13,88 +14,63 @@ export default function Scene() {
   useEffect(() => {
     if (prefersReducedMotion()) return;
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        "[data-frame]",
-        { clipPath: "inset(18% 22% 18% 22%)" },
-        {
-          clipPath: "inset(0% 0% 0% 0%)",
-          ease: "none",
-          scrollTrigger: { trigger: "[data-frame]", start: "top 90%", end: "top 25%", scrub: true },
-        },
-      );
-      gsap.fromTo(
-        "[data-frame-img]",
-        { scale: 1.35 },
-        {
-          scale: 1,
-          ease: "none",
-          scrollTrigger: { trigger: "[data-frame]", start: "top 90%", end: "top 25%", scrub: true },
-        },
-      );
+      const st = { trigger: "[data-frame]", start: "top 90%", end: "top 25%", scrub: true };
+      gsap.fromTo("[data-frame]", { clipPath: "inset(14% 18% 14% 18%)" }, { clipPath: "inset(0% 0% 0% 0%)", ease: "none", scrollTrigger: st });
+      gsap.fromTo("[data-frame-img]", { scale: 1.3 }, { scale: 1, ease: "none", scrollTrigger: st });
+      gsap.fromTo("[data-frame-dark]", { opacity: 0.75 }, { opacity: 0, ease: "none", scrollTrigger: st });
       gsap.from("[data-spot]", {
-        scale: 0,
         opacity: 0,
-        duration: 0.6,
-        stagger: 0.15,
-        ease: "back.out(2)",
+        duration: 1.2,
+        stagger: 0.3,
+        ease: "power2.out",
         scrollTrigger: { trigger: "[data-frame]", start: "top 30%" },
       });
       gsap.from("[data-stat]", {
-        y: 40,
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out",
+        y: 20,
+        duration: 1,
+        stagger: 0.15,
+        ease: "power2.out",
         scrollTrigger: { trigger: "[data-stats]", start: "top 85%" },
       });
     }, root);
     return () => ctx.revert();
   }, []);
 
-  const examine = (marker: number) => {
-    selectEvidence(marker);
-    scrollToId("evidence");
-  };
-
   return (
-    <section id="scene" ref={root} className="relative mx-auto max-w-7xl px-4 pb-28 pt-32 sm:px-8">
+    <section id="scene" ref={root} className="relative mx-auto max-w-7xl px-5 pb-28 pt-36 sm:px-10">
+      <Cobweb corner="tr" seed={12} size={220} opacity={0.35} className="right-0 top-10" />
+
       <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
-        <div className="lg:col-span-7">
-          <p className="mb-4 flex items-center gap-3 font-type text-[10px] uppercase tracking-[0.35em] text-blood-bright sm:text-xs">
-            <span className="h-px w-10 bg-blood-bright" />
-            01 · Case summary
-          </p>
-          <Scramble
-            as="h2"
-            text="A BATHROOM NO ONE WALKED OUT OF."
-            className="block font-display text-5xl leading-[0.9] tracking-wide sm:text-7xl"
-          />
-        </div>
-        <p className="leading-relaxed text-foreground/70 lg:col-span-5">{project.summary}</p>
+        <Heading label="File 01 — Case summary" title="No one walked out" className="lg:col-span-7" />
+        <p className="text-lg leading-relaxed text-foreground/70 lg:col-span-5">{project.summary}</p>
       </div>
 
-      <dl data-stats className="mt-12 grid grid-cols-3 border-y border-line">
+      <dl data-stats className="relative mt-14 grid grid-cols-3">
+        <span className="rough-line absolute inset-x-0 top-0" />
+        <span className="rough-line absolute inset-x-0 bottom-0" />
         {[
-          ["03", "Main miniatures"],
-          ["A4–A3", "Diorama scale"],
-          ["360°", "Object views"],
+          ["03", "main miniatures"],
+          ["A4–A3", "diorama scale"],
+          ["360°", "turntable view"],
         ].map(([v, l], i) => (
-          <div key={l} data-stat className={`py-6 ${i ? "border-l border-line pl-4 sm:pl-8" : ""}`}>
-            <dt className="font-display text-4xl text-foreground sm:text-6xl">{v}</dt>
-            <dd className="mt-1 font-type text-[10px] uppercase tracking-[0.2em] text-muted sm:text-xs">{l}</dd>
+          <div key={l} data-stat className="relative px-4 py-6 sm:px-8">
+            {i > 0 && <span className="rough-line-v absolute bottom-3 left-0 top-3" />}
+            <dt className="eroded font-display text-5xl font-extrabold sm:text-7xl">{v}</dt>
+            <dd className="mt-1 font-type text-xs text-muted sm:text-sm">{l}</dd>
           </div>
         ))}
       </dl>
 
       <div className="mt-16">
-        <div className="mb-4 flex items-center justify-between font-type text-[10px] uppercase tracking-[0.3em] text-muted sm:text-xs">
-          <span>Scene photograph · Exhibit 01</span>
-          <span className="hidden sm:inline">Select a marker to examine</span>
-          <span className="sm:hidden">Tap a marker</span>
+        <div className="mb-4 flex items-center justify-between font-type text-sm text-muted">
+          <span>Exhibit 01 — scene photograph</span>
+          <span className="hidden sm:inline">select a marker</span>
+          <span className="sm:hidden">tap a marker</span>
         </div>
         <div
           data-frame
-          className="relative w-full overflow-hidden border border-line bg-black"
+          className="relative w-full overflow-hidden bg-black"
           style={{ aspectRatio: `${coverSize.width} / ${coverSize.height}` }}
           onPointerLeave={() => setActive(null)}
         >
@@ -102,16 +78,19 @@ export default function Scene() {
           <img
             data-frame-img
             src={coverImage}
-            alt="The diorama with hotspots on the bathtub, toilet and sink"
+            alt="The diorama with markers on the bathtub, toilet and sink"
             loading="lazy"
-            className="absolute inset-0 h-full w-full object-cover"
+            className="graded absolute inset-0 h-full w-full object-cover"
           />
-          <div className="scanlines pointer-events-none absolute inset-0 opacity-30" />
+          <div className="tint pointer-events-none absolute inset-0" />
+          <div data-frame-dark className="pointer-events-none absolute inset-0 bg-black opacity-0" />
+          <div className="vignette pointer-events-none absolute inset-0 opacity-60" />
           <div
-            className={`pointer-events-none absolute inset-0 bg-black/55 transition-opacity duration-500 ${
+            className={`pointer-events-none absolute inset-0 bg-black/60 transition-opacity duration-700 ${
               active ? "opacity-100" : "opacity-0"
             }`}
           />
+          <div className="rough-frame pointer-events-none absolute inset-0" />
 
           {evidence.map((item) => {
             const on = active === item.marker;
@@ -125,17 +104,17 @@ export default function Scene() {
               >
                 <button
                   type="button"
-                  aria-label={`Examine ${item.name}`}
-                  data-cursor="EXAMINE"
+                  aria-label={`Show notes on ${item.name}`}
+                  aria-expanded={on}
                   onPointerEnter={(e) => e.pointerType === "mouse" && setActive(item.marker)}
-                  onClick={() => (on ? examine(item.marker) : setActive(item.marker))}
+                  onClick={() => setActive(on ? null : item.marker)}
                   className="relative grid h-9 w-9 -translate-x-1/2 -translate-y-1/2 place-items-center sm:h-12 sm:w-12"
                 >
-                  <span className="hotspot-ring absolute inset-0 rounded-full border border-tape" />
-                  <span className="hotspot-ring delay absolute inset-0 rounded-full border border-tape" />
+                  <span className="hotspot-ring absolute inset-0 rounded-full border border-foreground/70" />
+                  <span className="hotspot-ring delay absolute inset-0 rounded-full border border-foreground/70" />
                   <span
-                    className={`relative grid h-6 w-6 place-items-center rounded-full font-type text-xs text-black transition sm:h-8 sm:w-8 sm:text-sm ${
-                      on ? "scale-110 bg-blood-bright text-white" : "bg-tape"
+                    className={`relative grid h-6 w-6 place-items-center rounded-full font-type text-sm transition duration-500 sm:h-8 sm:w-8 sm:text-base ${
+                      on ? "bg-blood-bright text-white" : "bg-foreground text-black"
                     }`}
                   >
                     {item.marker}
@@ -143,22 +122,17 @@ export default function Scene() {
                 </button>
 
                 <div
-                  className={`absolute top-0 w-56 border border-tape/60 bg-background/90 p-4 backdrop-blur-md transition-all duration-300 sm:w-64 ${
-                    flip ? "right-8 sm:right-10" : "left-8 sm:left-10"
-                  } ${on ? "pointer-events-auto translate-y-[-50%] opacity-100" : "pointer-events-none translate-y-[-40%] opacity-0"}`}
+                  className={`absolute top-0 w-56 bg-black/85 p-4 transition-all duration-500 sm:w-72 sm:p-5 ${
+                    flip ? "right-7 sm:right-9" : "left-7 sm:left-9"
+                  } ${on ? "pointer-events-auto -translate-y-1/2 opacity-100" : "pointer-events-none -translate-y-[45%] opacity-0"}`}
                 >
-                  <p className="font-type text-[10px] uppercase tracking-[0.3em] text-blood-bright">
-                    Evidence 0{item.marker}
+                  <div className="rough-frame pointer-events-none absolute inset-0" />
+                  <p className="font-type text-xs text-muted">Evidence 0{item.marker}</p>
+                  <p className="eroded mt-1 font-display text-3xl font-extrabold uppercase leading-none sm:text-4xl">
+                    {item.name}
                   </p>
-                  <p className="mt-1 font-display text-2xl tracking-wide sm:text-3xl">{item.name}</p>
-                  <p className="mt-2 hidden text-xs leading-relaxed text-foreground/70 sm:block">{item.description}</p>
-                  <button
-                    type="button"
-                    onClick={() => examine(item.marker)}
-                    className="mt-3 font-type text-[11px] uppercase tracking-[0.25em] text-tape hover:underline"
-                  >
-                    Examine 360° ▸
-                  </button>
+                  <p className="mt-2 hidden text-sm leading-snug text-foreground/75 sm:block">{item.description}</p>
+                  <p className="mt-3 font-type text-[11px] text-muted">{item.details.join(" · ")}</p>
                 </div>
               </div>
             );

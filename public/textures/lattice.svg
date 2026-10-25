@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <!-- Faded wallpaper lattice -->
+  <g fill="none" stroke="#eaeae2" stroke-width="0.6" opacity="0.9">
+    <path d="M0 32 L32 0 L64 32 L32 64 Z"/>
+    <path d="M32 26 q3 3 0 6 q-3 3 0 6 M26 32 q3 -3 6 0 q3 3 6 0"/>
+    <circle cx="0" cy="0" r="3"/><circle cx="64" cy="0" r="3"/><circle cx="0" cy="64" r="3"/><circle cx="64" cy="64" r="3"/>
+    <path d="M28 4 q4 4 8 0 M28 60 q4 -4 8 0 M4 28 q4 4 0 8 M60 28 q-4 4 0 8"/>
+  </g>
+</svg>

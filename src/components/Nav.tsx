@@ -7,7 +7,7 @@ import { createAmbient } from "@/lib/ambient";
 const links = [
   { href: "#scene", label: "Scene" },
   { href: "#film", label: "Film" },
-  { href: "#evidence", label: "Evidence" },
+  { href: "#examine", label: "360° View" },
   { href: "#making", label: "Making Of" },
   { href: "#log", label: "Log" },
   { href: "#team", label: "Team" },
@@ -43,84 +43,75 @@ export default function Nav() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-        scrolled || open ? "bg-background/75 backdrop-blur-xl" : "bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 transition-[background-color] duration-700 ${
+        scrolled || open ? "bg-black/70 backdrop-blur-sm" : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
-        <a href="#top" className="group flex items-center gap-3" data-cursor="TOP">
-          <span className="grid h-8 w-8 place-items-center bg-blood font-display text-xl text-white transition group-hover:bg-blood-bright">
-            {project.title.charAt(0)}
-          </span>
-          <span className="font-type text-xs uppercase tracking-[0.25em] text-foreground/80">{project.caseNo}</span>
+      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-10">
+        <a href="#top" className="eroded font-display text-2xl font-black uppercase leading-none tracking-wide">
+          {project.title}
         </a>
 
-        <ul className="hidden items-center gap-7 lg:flex">
-          {links.map((l, i) => (
+        <ul className="hidden items-center gap-8 lg:flex">
+          {links.map((l) => (
             <li key={l.href}>
               <a
                 href={l.href}
-                className="group relative font-type text-[11px] uppercase tracking-[0.2em] text-foreground/60 transition hover:text-foreground"
+                className="text-link font-type text-sm text-foreground/75 [filter:drop-shadow(1px_1px_2px_rgba(0,0,0,0.8))] hover:text-foreground"
               >
-                <span className="mr-1 text-blood-bright">0{i + 1}</span>
                 {l.label}
-                <span className="absolute -bottom-1 left-0 h-px w-0 bg-tape transition-all duration-300 group-hover:w-full" />
               </a>
             </li>
           ))}
         </ul>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-5">
           <button
             type="button"
             onClick={toggleSound}
             aria-pressed={sound}
-            data-cursor={sound ? "MUTE" : "SOUND"}
-            className="flex h-10 items-center gap-2 rounded-full border border-line px-3 font-type text-[10px] uppercase tracking-[0.2em] text-foreground/70 transition hover:border-tape hover:text-tape"
+            className="flex items-center gap-2 font-type text-sm text-foreground/75 hover:text-foreground"
           >
-            <span className="flex h-3 items-end gap-[2px]">
+            <span className="flex h-3 items-end gap-[2px]" aria-hidden>
               {[0.6, 1, 0.4, 0.8].map((h, i) => (
                 <span
                   key={i}
-                  className="w-[2px] bg-current transition-all"
+                  className="w-px bg-current"
                   style={{
-                    height: sound ? `${h * 100}%` : "20%",
+                    height: sound ? `${h * 100}%` : "25%",
                     animation: sound ? `blink ${0.5 + i * 0.17}s steps(2) infinite` : "none",
                   }}
                 />
               ))}
             </span>
-            <span className="hidden sm:inline">{sound ? "Sound on" : "Sound off"}</span>
+            <span className="hidden sm:inline">{sound ? "sound on" : "sound off"}</span>
           </button>
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
             aria-label="Toggle menu"
             aria-expanded={open}
-            className="grid h-10 w-10 place-items-center rounded-full border border-line lg:hidden"
+            className="grid h-10 w-10 place-items-center lg:hidden"
           >
-            <span className="relative block h-3 w-4">
-              <span className={`absolute left-0 h-px w-4 bg-foreground transition ${open ? "top-1.5 rotate-45" : "top-0"}`} />
-              <span className={`absolute left-0 h-px w-4 bg-foreground transition ${open ? "top-1.5 -rotate-45" : "top-3"}`} />
+            <span className="relative block h-3 w-6">
+              <span className={`rough-line absolute left-0 w-6 opacity-100 transition ${open ? "top-1.5 rotate-45" : "top-0"}`} />
+              <span className={`rough-line absolute left-0 w-6 opacity-100 transition ${open ? "top-1.5 -rotate-45" : "top-3"}`} />
             </span>
           </button>
         </div>
       </nav>
 
-      <div className="h-px w-full bg-transparent">
-        <div ref={bar} className="h-px origin-left scale-x-0 bg-blood-bright shadow-[0_0_8px_#e3242b]" />
-      </div>
+      <div ref={bar} className="rough-line w-full origin-left scale-x-0 opacity-70" />
 
       {open && (
-        <ul className="border-t border-line px-4 py-4 lg:hidden">
-          {links.map((l, i) => (
+        <ul className="px-5 pb-6 pt-2 lg:hidden">
+          {links.map((l) => (
             <li key={l.href}>
               <a
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="flex items-baseline gap-3 py-3 font-display text-3xl tracking-wider text-foreground/90"
+                className="eroded block py-2 font-display text-4xl font-extrabold uppercase text-foreground/90"
               >
-                <span className="font-type text-xs text-blood-bright">0{i + 1}</span>
                 {l.label}
               </a>
             </li>
