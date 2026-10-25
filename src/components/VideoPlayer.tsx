@@ -7,14 +7,21 @@ export default function VideoPlayer({ video }: { video: VideoItem }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [started, setStarted] = useState(false);
   const pending = !video.src;
+  const aspect = video.aspect ?? { w: 16, h: 9 };
 
   const play = () => {
     setStarted(true);
-    ref.current?.play();
+    const v = ref.current;
+    if (!v) return;
+    v.currentTime = 0;
+    v.play();
   };
 
   return (
-    <div className="group relative aspect-video w-full overflow-hidden bg-black">
+    <div
+      className="group relative w-full overflow-hidden bg-black"
+      style={{ aspectRatio: `${aspect.w} / ${aspect.h}` }}
+    >
       {pending ? (
         <>
           {video.poster && (
@@ -35,7 +42,8 @@ export default function VideoPlayer({ video }: { video: VideoItem }) {
         <>
           <video
             ref={ref}
-            src={video.src}
+            // with no poster, "#t=0.1" makes browsers show an early frame as the preview
+            src={video.poster ? video.src : `${video.src}#t=0.1`}
             poster={video.poster}
             controls={started}
             playsInline

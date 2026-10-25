@@ -27,8 +27,11 @@ export type VideoItem = {
   description: string;
   // Path under /public, e.g. "/media/final-30s.mp4". Leave empty until the file is ready.
   src: string;
+  // Without a poster, the player shows the video's own first frame.
   poster?: string;
   duration?: string;
+  // Video frame size, so portrait (phone) videos get a tall player. Defaults to 16:9.
+  aspect?: { w: number; h: number };
 };
 
 export const videos: { final: VideoItem; making: VideoItem } = {
@@ -48,8 +51,10 @@ export const videos: { final: VideoItem; making: VideoItem } = {
     title: "Making Of",
     description:
       "Behind the scenes - from the first sketch and foundation to painting, lighting the set and the green-screen shoot.",
-    src: "",
-    poster: "/images/scene-01.jpg",
+    src: "/media/making-of.mp4",
+    duration: "0:56",
+    // shot vertically on a phone
+    aspect: { w: 1080, h: 1920 },
   },
 };
 

@@ -48,6 +48,7 @@ export function Film() {
 
 // Exhibit B: behind the scenes.
 export function MakingOf() {
+  const portrait = videos.making.aspect ? videos.making.aspect.h > videos.making.aspect.w : false;
   return (
     <section id="making" className="relative py-28">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-10 lg:grid-cols-12">
@@ -55,10 +56,13 @@ export function MakingOf() {
           <Heading label={`File 04 - ${videos.making.label}`} title={videos.making.title} />
           <p className="mt-8 text-lg leading-relaxed text-foreground/70">{videos.making.description}</p>
         </div>
-        <div className="relative lg:col-span-8">
-          <VideoPlayer video={videos.making} />
-          <div className="rough-frame pointer-events-none absolute inset-0" />
-          <Cobweb corner="bl" seed={57} size={150} opacity={0.4} className="-bottom-3 -left-3" />
+        {/* a phone-shaped player for vertical footage, full width for widescreen */}
+        <div className="lg:col-span-8">
+          <div className={`relative ${portrait ? "mx-auto w-full max-w-[340px] sm:max-w-[380px]" : ""}`}>
+            <VideoPlayer video={videos.making} />
+            <div className="rough-frame pointer-events-none absolute inset-0" />
+            <Cobweb corner="bl" seed={57} size={150} opacity={0.4} className="-bottom-3 -left-3" />
+          </div>
         </div>
       </div>
     </section>
