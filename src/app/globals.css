@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+:root {
+  --background: #07090d;
+  --surface: #0e1219;
+  --surface-2: #151b25;
+  --line: #232c3a;
+  --foreground: #e8e3d6;
+  --muted: #8a93a3;
+  --tape: #f2c230;
+  --blood: #b3121b;
+  --uv: #6f7bf7;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-tape: var(--tape);
+  --color-blood: var(--blood);
+  --color-uv: var(--uv);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-bebas);
+  --font-type: var(--font-typewriter);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+::selection {
+  background: var(--tape);
+  color: #000;
+}
+
+/* Film grain over the whole page */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation: grain 1.2s steps(6) infinite;
+}
+
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-3%, 2%); }
+  40% { transform: translate(2%, -3%); }
+  60% { transform: translate(-2%, -1%); }
+  80% { transform: translate(3%, 3%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Police tape */
+.tape {
+  background: var(--tape);
+  color: #0b0b0b;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.tape-track {
+  display: flex;
+  width: max-content;
+  animation: tape-scroll 40s linear infinite;
+}
+
+.tape-track.reverse {
+  animation-direction: reverse;
+}
+
+@keyframes tape-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Slow push-in on the hero cover */
+.kenburns {
+  animation: kenburns 30s ease-in-out infinite alternate;
+}
+
+@keyframes kenburns {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+/* Flicker for the hero heading */
+.flicker {
+  animation: flicker 6s infinite;
+}
+
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.55; }
+}
+
+/* tikslus360 host: the plugin sets a fixed pixel size, make it responsive */
+.viewer360-host {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 1 / 1;
+}
+
+.viewer360-host canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: pan-y;
+}
+
+.viewer360-host .autorotate {
+  right: 12px !important;
+  bottom: 12px !important;
+  padding: 6px 12px !important;
+  border-radius: 999px;
+  background: rgba(7, 9, 13, 0.75);
+  border: 1px solid var(--line);
+  color: var(--foreground);
+  font-family: var(--font-typewriter);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  backdrop-filter: blur(6px);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.viewer360-host .autorotate:hover {
+  border-color: var(--tape);
+  color: var(--tape);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tape-track, .flicker, .grain::after, .kenburns { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
