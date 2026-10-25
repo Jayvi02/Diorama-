@@ -43,7 +43,8 @@ export default function Viewer360({ id, imageDir, imageExt, frames, width, heigh
           canvasID: `canvas-${id}`,
           canvasWidth: width,
           canvasHeight: height,
-          autoRotate: true,
+          // starts still; the "Auto rotate" button spins it
+          autoRotate: false,
         });
         setState("ready");
       } catch {

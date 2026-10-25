@@ -7,7 +7,8 @@ Modified for the SE3041 diorama site:
  - mouse position is scaled to the canvas, so the viewer works when the canvas is resized by CSS (responsive)
  - touch support (drag a finger across the object to rotate it on phones)
  - canvas composite mode is reset after zooming (the original left it in 'destination-atop', which blanked later frames)
- - loading text is drawn in a colour that is visible on a dark background
+ - loading text is drawn in a colour that is visible on a dark background,
+   and is replaced by the first frame as soon as all frames have loaded
 */
 (function($){
    var Tikslus360 = function(element, options)
@@ -78,6 +79,13 @@ clear();
 img_Array[i].onload=function(){
 loadedCount++;
 if(options.autoRotate==true) return;
+// modified: once everything has loaded, replace the loading text with a frame
+if(loadedCount==options.imageCount){
+clearInterval(fadeTimerId);
+context.globalAlpha = 1;
+rotate360(modulus>0 ? modulus : 1);
+return;
+}
 clear();
 context.fillStyle = '#e8e3d6';
 context.font = 'italic 40pt Calibri';
