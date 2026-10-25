@@ -90,8 +90,9 @@ export default function Hero() {
 
       <Dust className="absolute inset-0" />
       {/* torch: darkness everywhere except a tight beam that follows the cursor */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_340px_at_var(--fx)_var(--fy),transparent_0%,rgba(8,8,8,0.55)_45%,rgba(8,8,8,0.95)_100%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_180px_at_var(--fx)_var(--fy),rgba(255,236,205,0.09),transparent_70%)] mix-blend-screen" />
+      {/* many stops so the darkness eases in gradually and the beam has no visible edge */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_560px_at_var(--fx)_var(--fy),rgba(8,8,8,0)_0%,rgba(8,8,8,0.08)_12%,rgba(8,8,8,0.25)_24%,rgba(8,8,8,0.45)_36%,rgba(8,8,8,0.64)_50%,rgba(8,8,8,0.8)_65%,rgba(8,8,8,0.9)_80%,rgba(8,8,8,0.95)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_320px_at_var(--fx)_var(--fy),rgba(255,236,205,0.22)_0%,rgba(255,236,205,0.15)_20%,rgba(255,236,205,0.08)_42%,rgba(255,236,205,0.03)_66%,rgba(255,236,205,0)_100%)] mix-blend-screen" />
       <div className="light-flicker pointer-events-none absolute inset-0 bg-black" />
       <div className="vignette pointer-events-none absolute inset-0" />
       <div className="absolute inset-y-0 left-0 w-full bg-gradient-to-r from-black/80 via-black/30 to-transparent md:w-2/3" />
