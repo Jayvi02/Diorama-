@@ -89,7 +89,9 @@ export default function Hero() {
       </div>
 
       <Dust className="absolute inset-0" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_460px_at_var(--fx)_var(--fy),transparent_0%,rgba(8,8,8,0.45)_50%,rgba(8,8,8,0.9)_100%)]" />
+      {/* torch: darkness everywhere except a tight beam that follows the cursor */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_340px_at_var(--fx)_var(--fy),transparent_0%,rgba(8,8,8,0.55)_45%,rgba(8,8,8,0.95)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_180px_at_var(--fx)_var(--fy),rgba(255,236,205,0.09),transparent_70%)] mix-blend-screen" />
       <div className="light-flicker pointer-events-none absolute inset-0 bg-black" />
       <div className="vignette pointer-events-none absolute inset-0" />
       <div className="absolute inset-y-0 left-0 w-full bg-gradient-to-r from-black/80 via-black/30 to-transparent md:w-2/3" />
@@ -105,7 +107,7 @@ export default function Hero() {
         <div className="max-w-2xl">
           <div data-logo className="relative">
             <span className="absolute -left-4 top-[0.15em] h-2 w-2 rounded-full bg-blood-bright sm:-left-6 sm:h-2.5 sm:w-2.5" aria-hidden />
-            <h1 className="w-max whitespace-nowrap font-type text-[clamp(2.9rem,10vw,7.5rem)] leading-none">
+            <h1 className="w-max whitespace-nowrap font-type text-[clamp(2.25rem,7.5vw,5.25rem)] leading-none">
               <TypeTitle text={project.title} />
             </h1>
           </div>
