@@ -48,7 +48,8 @@ export default function Nav() {
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-10">
-        <a href="#top" className="eroded font-display text-2xl font-black uppercase leading-none tracking-wide">
+        <a href="#top" className="flex items-center gap-2 font-type text-lg leading-none">
+          <span className="h-1.5 w-1.5 rounded-full bg-blood-bright" aria-hidden />
           {project.title}
         </a>
 
@@ -110,7 +111,7 @@ export default function Nav() {
               <a
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="eroded block py-2 font-display text-4xl font-extrabold uppercase text-foreground/90"
+                className="block py-2 font-display text-4xl font-semibold tracking-[-0.02em] text-foreground/90"
               >
                 {l.label}
               </a>

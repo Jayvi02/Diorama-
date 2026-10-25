@@ -7,7 +7,7 @@ export default function Tape({ text, className = "" }: { text: string; className
   ));
   return (
     <div
-      className={`tape overflow-hidden py-1.5 font-display text-lg font-extrabold uppercase tracking-[0.2em] sm:text-xl ${className}`}
+      className={`tape overflow-hidden py-1.5 font-display text-lg font-bold uppercase tracking-[0.2em] sm:text-xl ${className}`}
       aria-hidden
     >
       <div className="tape-track">

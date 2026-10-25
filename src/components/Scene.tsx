@@ -56,7 +56,7 @@ export default function Scene() {
         ].map(([v, l], i) => (
           <div key={l} data-stat className="relative px-4 py-6 sm:px-8">
             {i > 0 && <span className="rough-line-v absolute bottom-3 left-0 top-3" />}
-            <dt className="eroded font-display text-5xl font-extrabold sm:text-7xl">{v}</dt>
+            <dt className="font-display text-4xl font-semibold tracking-[-0.02em] sm:text-6xl">{v}</dt>
             <dd className="mt-1 font-type text-xs text-muted sm:text-sm">{l}</dd>
           </div>
         ))}
@@ -128,7 +128,7 @@ export default function Scene() {
                 >
                   <div className="rough-frame pointer-events-none absolute inset-0" />
                   <p className="font-type text-xs text-muted">Evidence 0{item.marker}</p>
-                  <p className="eroded mt-1 font-display text-3xl font-extrabold uppercase leading-none sm:text-4xl">
+                  <p className="mt-1 font-display text-2xl font-semibold leading-none tracking-[-0.01em] sm:text-3xl">
                     {item.name}
                   </p>
                   <p className="mt-2 hidden text-sm leading-snug text-foreground/75 sm:block">{item.description}</p>

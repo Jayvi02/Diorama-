@@ -73,9 +73,8 @@ export default function Heading({
   return (
     <div ref={ref} className={className}>
       <Typed text={label} className="font-type text-sm text-muted sm:text-base" />
-      {/* blur animates on the h2; the worn-edge filter lives on the inner span so they don't clash */}
-      <h2 data-title className="mt-3 font-display text-6xl font-extrabold uppercase leading-[0.85] sm:text-8xl">
-        <span className="eroded block">{title}</span>
+      <h2 data-title className="mt-3 font-display text-5xl font-semibold leading-[0.95] tracking-[-0.02em] sm:text-7xl">
+        {title}
       </h2>
       <div data-rule className="rough-line mt-6 w-full max-w-md origin-left" />
     </div>

@@ -28,7 +28,7 @@
   --color-paper: var(--paper);
   --color-ink: var(--ink);
   --font-sans: var(--font-body);
-  --font-display: var(--font-display-face);
+  --font-display: var(--font-body);
   --font-type: var(--font-typewriter);
 }
 
@@ -100,6 +100,19 @@ body::before {
   -webkit-mask-size: 420px 420px;
   mask-size: 420px 420px;
   filter: url(#rough-edge);
+}
+
+/* Letters of the flipping typewriter title; .ghost is the misaligned double strike */
+.type-letter {
+  display: inline-block;
+  white-space: pre;
+}
+
+.type-letter.ghost {
+  transform: translate(0.02em, -0.03em);
+  text-shadow:
+    -0.07em -0.06em 0 rgba(234, 234, 226, 0.4),
+    0.05em 0.04em 0 rgba(234, 234, 226, 0.18);
 }
 
 /* Spaced lowercase typewriter subtitle, like "r e q u i e m" */

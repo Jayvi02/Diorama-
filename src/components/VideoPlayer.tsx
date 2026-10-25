@@ -25,7 +25,7 @@ export default function VideoPlayer({ video }: { video: VideoItem }) {
           <div className="vignette absolute inset-0" />
           <div className="absolute inset-0 grid place-items-center p-6 text-center">
             <div>
-              <p className="eroded font-display text-5xl font-black uppercase sm:text-7xl">No signal</p>
+              <p className="font-type text-4xl sm:text-6xl">No signal</p>
               <div className="rough-line mx-auto mt-3 w-40" />
               <p className="mt-3 font-type text-sm text-muted">tape awaiting upload from the editing bay</p>
             </div>

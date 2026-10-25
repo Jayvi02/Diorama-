@@ -59,7 +59,7 @@ export default function Log() {
               <div className="rough-frame pointer-events-none absolute inset-0 transition-opacity group-hover:opacity-100 lg:opacity-60" />
               <p className="font-type text-sm text-muted">Entry no. {p.step}</p>
               <div>
-                <h3 className="eroded mt-6 font-display text-5xl font-extrabold uppercase leading-[0.9] lg:text-6xl">
+                <h3 className="mt-6 font-display text-4xl font-semibold leading-[0.95] tracking-[-0.02em] lg:text-5xl">
                   {p.title}
                 </h3>
                 <div className="rough-line mt-4 w-24" />

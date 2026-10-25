@@ -79,7 +79,7 @@ export default function Team() {
             </p>
             <span
               data-stamp
-              className="stamp absolute bottom-6 right-5 -rotate-12 px-2 py-0.5 font-display text-2xl font-black uppercase tracking-[0.15em]"
+              className="stamp absolute bottom-6 right-5 -rotate-12 px-2 py-0.5 font-display text-2xl font-bold uppercase tracking-[0.15em]"
             >
               Cleared
             </span>

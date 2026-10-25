@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { project } from "@/data/site";
 import { getLenis, gsap, markIntroDone, prefersReducedMotion } from "@/lib/motion";
+import TypeTitle from "./TypeTitle";
 
 // Title-card intro shown once per browser session. Click or press any key to skip.
 export default function Loader() {
@@ -65,8 +66,8 @@ export default function Loader() {
       <div className="vignette absolute inset-0" />
       <div className="relative text-center">
         <div data-logo>
-          <p className="eroded font-display text-[clamp(3.5rem,13vw,9rem)] font-black uppercase leading-[0.82]">
-            {project.title}
+          <p className="font-type text-[clamp(2.6rem,9vw,6.5rem)] leading-none">
+            <TypeTitle text={project.title} />
           </p>
         </div>
         <div className="mt-4 flex items-center justify-center gap-4">

@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { project } from "@/data/site";
 import { gsap, prefersReducedMotion, scrollToId } from "@/lib/motion";
 import Cobweb, { HangingSpider } from "./Cobweb";
+import TypeTitle from "./TypeTitle";
 
 // Closing title card.
 export default function Footer() {
@@ -32,8 +33,8 @@ export default function Footer() {
       <div className="relative mx-auto max-w-7xl px-5 text-center sm:px-10">
         <p className="font-type text-sm text-muted">— end of file —</p>
         <div data-end className="mt-6">
-          <p className="eroded font-display text-[clamp(4rem,15vw,13rem)] font-black uppercase leading-[0.8]">
-            {project.title}
+          <p className="font-type text-[clamp(2.6rem,10vw,8rem)] leading-none">
+            <TypeTitle text={project.title} />
           </p>
         </div>
         <div className="mt-4 flex items-center justify-center gap-4">

@@ -5,6 +5,7 @@ import { coverImage, project } from "@/data/site";
 import { gsap, onIntroDone, prefersReducedMotion, scrollToId } from "@/lib/motion";
 import Cobweb, { HangingSpider } from "./Cobweb";
 import Dust from "./Dust";
+import TypeTitle from "./TypeTitle";
 
 const caseInfo = [
   { value: project.caseNo, label: "Case no." },
@@ -102,9 +103,10 @@ export default function Hero() {
 
       <div data-content className="relative mx-auto w-full max-w-7xl px-5 pt-16 sm:px-10">
         <div className="max-w-2xl">
-          <div data-logo>
-            <h1 className="eroded w-max whitespace-nowrap pr-2 font-display text-[clamp(4rem,14vw,10rem)] font-black uppercase leading-[0.8]">
-              {project.title}
+          <div data-logo className="relative">
+            <span className="absolute -left-4 top-[0.15em] h-2 w-2 rounded-full bg-blood-bright sm:-left-6 sm:h-2.5 sm:w-2.5" aria-hidden />
+            <h1 className="w-max whitespace-nowrap font-type text-[clamp(2.9rem,10vw,7.5rem)] leading-none">
+              <TypeTitle text={project.title} />
             </h1>
           </div>
           <div className="mt-3 flex items-center gap-4">

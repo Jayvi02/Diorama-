@@ -30,11 +30,6 @@ export default function Examine() {
               </li>
             ))}
           </ol>
-          {diorama360.placeholder && (
-            <p className="mt-10 font-type text-xs leading-relaxed text-blood-bright/90">
-              Note: showing the lecture&apos;s sample frames until the diorama&apos;s own 360° capture is added.
-            </p>
-          )}
         </div>
 
         <div className="relative lg:col-span-8">
